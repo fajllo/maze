@@ -29,13 +29,21 @@ const walls = [
 
 World.add(world,walls)
 //random shapes
-for(let i =0;i<30;i++){
+for(let i =0; i<30 ;i++){
     let moveWidth = Math.floor(Math.random()* window.innerWidth);
     let moveHight = Math.floor(Math.random()* window.innerHeight);
     if(Math.random() > 0.5){
-        World.add(world,Bodies.rectangle(moveWidth,moveHight,50,50))
+        World.add(world,Bodies.rectangle(moveWidth,moveHight,50,50,{
+            render:{
+                fillStyle:""
+            }
+        }))
     }else{
-        World.add(world,Bodies.polygon(moveWidth,moveHight,50,50))
+        World.add(world,Bodies.polygon(moveWidth,moveHight,50,50,{
+            render:{
+                fillStyle:""
+            }
+        }))
     }
     
 }
