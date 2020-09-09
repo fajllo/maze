@@ -6,6 +6,7 @@ const render = Render.create({
     element:document.body,
     engine: engine,
     options:{
+        wireframes:false,
         width:window.innerWidth-20,
         height:window.innerHeight-20,
     }
