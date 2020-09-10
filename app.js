@@ -3,6 +3,8 @@ const width = 600;
 const height = 600;
 const columns= 3;
 const rows = 3;
+const lenght = height/rows;
+
 
 const engine = Engine.create();
 const {world} =engine;
@@ -100,14 +102,24 @@ function mazeCreation(row,column){
     }
     
 }
-cellChecker(1,1)
+mazeCreation(startRow,startColumn)
 
-horizontals.forEach((row)=> {
-    row.forEach((open)=> {
+horizontals.forEach((row,rowIndex)=> {
+    row.forEach((open,columIndex)=> {
         if(open){
             return
         }
         // drowing walls in our maze
-        const walls = Bodies.rectangle();
-    })
-})
+        const walls = Bodies.rectangle(
+            lenght * (columIndex + 0.5),
+            lenght * (rowIndex + 1),
+            lenght,
+            10,
+            {
+                isStatic:true,
+            }
+        );
+        World.add(world,walls)
+    });
+});
+
