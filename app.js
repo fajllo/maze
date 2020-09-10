@@ -24,14 +24,14 @@ World.add(world,MouseConstraint.create(engine,{
 
 
 // walls
-const walls = [
+const room = [
     Bodies.rectangle(width/2,0,width,40,{isStatic: true}),
     Bodies.rectangle(width/2,height,width,40,{isStatic: true}),
     Bodies.rectangle(0,height/2,40,height,{isStatic: true}),
     Bodies.rectangle(width,height/2,40,height,{isStatic: true}),
 ];
 
-World.add(world,walls)
+World.add(world,room)
 //shuffle
 
 function shuffle(arr){
@@ -94,10 +94,20 @@ function mazeCreation(row,column){
             horizontals[row][column] = true;
         }
 
-
+        mazeCreation(nextRow,nextColumn)
 
 
     }
     
 }
 cellChecker(1,1)
+
+horizontals.forEach((row)=> {
+    row.forEach((open)=> {
+        if(open){
+            return
+        }
+        // drowing walls in our maze
+        const walls = Bodies.rectangle();
+    })
+})
