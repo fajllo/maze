@@ -1,7 +1,8 @@
 const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse} = Matter;
 const width = 600;
 const height = 600;
-const cells =3;
+const columns= 3;
+const rows = 3;
 
 const engine = Engine.create();
 const {world} =engine;
@@ -34,7 +35,7 @@ World.add(world,walls)
 
 // 3x3 maze generation  
 // map creat new  so arrey dont effect each other
-const grid = Array(cells).fill(null).map(( )=> Array(cells).fill(false));
-const verticals = Array(cells).fill(null).map(( )=> Array(cells-1).fill(false));
-const horizontals   = Array(cells-1).fill(null).map(( )=> Array(cells).fill(false));
-console.log(grid)
+const grid = Array(rows).fill(null).map(( )=> Array(columns).fill(false));
+const verticals = Array(rows).fill(null).map(( )=> Array(columns-1).fill(false));
+const horizontals   = Array(rows -1 ).fill(null).map(( )=> Array(columns).fill(false));
+console.log(verticals)
