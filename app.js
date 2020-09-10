@@ -29,7 +29,7 @@ const walls = [
 
 World.add(world,walls)
 //random shapes
-for(let i =0; i<30 ;i++){
+for(let i =0; i<100 ;i++){
     let moveWidth = Math.floor(Math.random()* window.innerWidth);
     let moveHight = Math.floor(Math.random()* window.innerHeight);
     if(Math.random() > 0.5){
