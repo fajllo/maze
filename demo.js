@@ -13,6 +13,7 @@ const render = Render.create({
 });
 Render.run(render);
 Runner.run(Runner.create(),engine);
+//click and drag
 World.add(world,MouseConstraint.create(engine,{
     mouse:Mouse.create(render.canvas)
 }))
