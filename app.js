@@ -123,3 +123,21 @@ horizontals.forEach((row,rowIndex)=> {
     });
 });
 
+verticals.forEach((row,rowIndex)=> {
+    row.forEach((open,columIndex)=> {
+        if(open){
+            return
+        }
+        const walls = Bodies.rectangle(
+            lenght* (columIndex +1),
+            lenght *(rowIndex +0.5),
+            10,
+            lenght,
+            {
+                isStatic: true,
+            }
+        );
+        World.add(world,walls)
+
+    });
+});
