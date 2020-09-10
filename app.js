@@ -1,8 +1,8 @@
 const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse} = Matter;
 const width = 600;
 const height = 600;
-const columns= 30;
-const rows = 30;
+const columns= 20;
+const rows = 20;
 const lenght = height/rows;
 
 
@@ -114,7 +114,7 @@ horizontals.forEach((row,rowIndex)=> {
             lenght * (columIndex + 0.5),
             lenght * (rowIndex + 1),
             lenght,
-            5,
+            4,
             {
                 isStatic:true,
             }
@@ -131,7 +131,7 @@ verticals.forEach((row,rowIndex)=> {
         const walls = Bodies.rectangle(
             lenght* (columIndex +1),
             lenght *(rowIndex +0.5),
-            5,
+            4,
             lenght,
             {
                 isStatic: true,
@@ -141,3 +141,24 @@ verticals.forEach((row,rowIndex)=> {
 
     });
 });
+const win = Bodies.rectangle(
+    lenght * ((columns-1)+0.5),
+    lenght * ((rows-1)+0.5),
+    lenght * 0.6,
+    lenght * 0.6,
+    {
+        render:{
+            fillStyle : "red"
+        },
+        isStatic:true
+    }
+)
+World.add(world,win)
+
+const ball = Bodies.circle(
+    lenght*0.5,
+    lenght*0.5,
+    lenght*0.3,
+    lenght*0.3,
+)
+World.add(world,ball)
