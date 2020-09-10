@@ -1,8 +1,8 @@
 const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse} = Matter;
 const width = 600;
 const height = 600;
-const columns= 3;
-const rows = 3;
+const columns= 30;
+const rows = 30;
 const lenght = height/rows;
 
 
@@ -27,10 +27,10 @@ World.add(world,MouseConstraint.create(engine,{
 
 // walls
 const room = [
-    Bodies.rectangle(width/2,0,width,40,{isStatic: true}),
-    Bodies.rectangle(width/2,height,width,40,{isStatic: true}),
-    Bodies.rectangle(0,height/2,40,height,{isStatic: true}),
-    Bodies.rectangle(width,height/2,40,height,{isStatic: true}),
+    Bodies.rectangle(width/2,0,width,20,{isStatic: true}),
+    Bodies.rectangle(width/2,height,width,20,{isStatic: true}),
+    Bodies.rectangle(0,height/2,20,height,{isStatic: true}),
+    Bodies.rectangle(width,height/2,20,height,{isStatic: true}),
 ];
 
 World.add(world,room)
@@ -114,7 +114,7 @@ horizontals.forEach((row,rowIndex)=> {
             lenght * (columIndex + 0.5),
             lenght * (rowIndex + 1),
             lenght,
-            10,
+            5,
             {
                 isStatic:true,
             }
@@ -131,7 +131,7 @@ verticals.forEach((row,rowIndex)=> {
         const walls = Bodies.rectangle(
             lenght* (columIndex +1),
             lenght *(rowIndex +0.5),
-            10,
+            5,
             lenght,
             {
                 isStatic: true,
