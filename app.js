@@ -39,3 +39,9 @@ const grid = Array(rows).fill(null).map(( )=> Array(columns).fill(false));
 const verticals = Array(rows).fill(null).map(( )=> Array(columns-1).fill(false));
 const horizontals   = Array(rows -1 ).fill(null).map(( )=> Array(columns).fill(false));
 console.log(verticals)
+
+//random start 
+const startRow =Math.floor(Math.random() * rows);
+const startColumn =Math.floor(Math.random() * columns);
+
+console.log(startRow,startColumn)
