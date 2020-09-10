@@ -1,4 +1,4 @@
-const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse} = Matter;
+const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse,Body} = Matter;
 const width = 600;
 const height = 600;
 const columns= 20;
@@ -7,6 +7,7 @@ const lenght = height/rows;
 
 
 const engine = Engine.create();
+engine.world.gravity.y= 0;
 const {world} =engine;
 const render = Render.create({
     element:document.body,
@@ -158,7 +159,22 @@ World.add(world,win)
 const ball = Bodies.circle(
     lenght*0.5,
     lenght*0.5,
-    lenght*0.3,
-    lenght*0.3,
+    lenght*0.26,
+    lenght*0.26,
 )
 World.add(world,ball)
+document.addEventListener('keydown',event =>{
+    const {x, y}= ball.velocity;
+    if(event.keyCode === 87){
+        Body.setVelocity(ball,{x, y: y-4});
+    }
+    if(event.keyCode === 83){
+        Body.setVelocity(ball,{x, y: y+4});
+    }
+    if(event.keyCode === 65){
+        Body.setVelocity(ball,{x:x-4, y});
+    }
+    if(event.keyCode === 68){
+        Body.setVelocity(ball,{x:x+4, y});
+    }
+})
