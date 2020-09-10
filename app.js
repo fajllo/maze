@@ -32,16 +32,60 @@ const walls = [
 ];
 
 World.add(world,walls)
+//shuffle
+
+function shuffle(arr){
+    let count = arr.length;
+    while (count>0){
+        const index =  Math.floor(Math.random()* count)
+        count--;
+        const temp = arr[count];
+        arr[count] = arr[index];
+        arr[index] = temp;
+    }
+    return arr;
+
+}
 
 // 3x3 maze generation  
 // map creat new  so arrey dont effect each other
 const grid = Array(rows).fill(null).map(( )=> Array(columns).fill(false));
 const verticals = Array(rows).fill(null).map(( )=> Array(columns-1).fill(false));
 const horizontals   = Array(rows -1 ).fill(null).map(( )=> Array(columns).fill(false));
-console.log(verticals)
+
 
 //random start 
 const startRow =Math.floor(Math.random() * rows);
 const startColumn =Math.floor(Math.random() * columns);
 
-console.log(startRow,startColumn)
+function cellChecker(row,column){
+    
+    if(grid[row][column]){
+        return true;
+    }
+    //marking cell as visited
+    grid[row][column] = true;
+    // checking the neighbours
+    const neighbors = shuffle([
+        [row -1,column],
+        [row +1,column],
+        [row,column -1],
+        [row,column +1],
+    ]);
+    //now we have to randomize the neigburs
+    for(let neighbor of neighbors){ 
+        const [nextRow, nextColumn] = neighbor;
+
+        if(nextRow <0 || nextRow >= rows || nextColumn < 0 || nextColumn >= columns){
+            continue;
+        }
+        if(grid[nextRow][nextColumn]){
+            continue;
+        }
+
+
+
+    }
+    
+}
+cellChecker(1,1)
