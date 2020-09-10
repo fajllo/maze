@@ -31,3 +31,7 @@ const walls = [
 
 World.add(world,walls)
 
+// 3x3 maze generation  
+// map creat new  so arrey dont effect each other
+const grid = Array(3).fill(null).map(( )=> Array(3).fill(false));
+console.log(grid)
