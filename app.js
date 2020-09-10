@@ -58,7 +58,7 @@ const horizontals   = Array(rows -1 ).fill(null).map(( )=> Array(columns).fill(f
 const startRow =Math.floor(Math.random() * rows);
 const startColumn =Math.floor(Math.random() * columns);
 
-function cellChecker(row,column){
+function mazeCreation(row,column){
     
     if(grid[row][column]){
         return true;
@@ -67,14 +67,14 @@ function cellChecker(row,column){
     grid[row][column] = true;
     // checking the neighbours
     const neighbors = shuffle([
-        [row -1,column],
-        [row +1,column],
-        [row,column -1],
-        [row,column +1],
+        [row -1,column,'up'],
+        [row +1,column,'down'],
+        [row,column -1,'left'],
+        [row,column +1,'right'],
     ]);
     //now we have to randomize the neigburs
     for(let neighbor of neighbors){ 
-        const [nextRow, nextColumn] = neighbor;
+        const [nextRow, nextColumn,direction] = neighbor;
 
         if(nextRow <0 || nextRow >= rows || nextColumn < 0 || nextColumn >= columns){
             continue;
@@ -82,6 +82,18 @@ function cellChecker(row,column){
         if(grid[nextRow][nextColumn]){
             continue;
         }
+        // removing the walls 
+        if(direction ==="left"){
+            verticals[row][column-1] = true;
+
+        }else if(direction === "right"){
+            verticals[row][column] = true;
+        }else if (direction==="up"){
+            horizontals[row-1][column] = true;
+        }else if (direction==="down"){
+            horizontals[row][column] = true;
+        }
+
 
 
 
