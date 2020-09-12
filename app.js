@@ -1,8 +1,8 @@
-const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse,Body} = Matter;
+const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse,Body, Events} = Matter;
 const width = 600;
 const height = 600;
-const columns= 20;
-const rows = 20;
+const columns= 5;
+const rows = 5;
 const lenght = height/rows;
 
 
@@ -117,6 +117,7 @@ horizontals.forEach((row,rowIndex)=> {
             lenght,
             4,
             {
+                label : "wall",
                 isStatic:true,
             }
         );
@@ -135,6 +136,7 @@ verticals.forEach((row,rowIndex)=> {
             4,
             lenght,
             {
+                label : "wall",
                 isStatic: true,
             }
         );
@@ -148,6 +150,7 @@ const win = Bodies.rectangle(
     lenght * 0.6,
     lenght * 0.6,
     {
+        label : "win",
         render:{
             fillStyle : "red"
         },
@@ -156,26 +159,45 @@ const win = Bodies.rectangle(
 )
 World.add(world,win)
 
-const ball = Bodies.circle(
+const ball = Bodies.polygon(
     lenght*0.5,
     lenght*0.5,
     lenght*0.26,
     lenght*0.26,
+    {
+        label: 'ball',
+        render: { fillStyle:"" }
+    }
 )
 World.add(world,ball)
-document.addEventListener('keyup',event =>{
+document.addEventListener('keydown',event =>{
     const {x, y}= ball.velocity;
     if(event.keyCode === 87){
-        Body.setVelocity(ball,{x, y: y-2});
+        Body.setVelocity(ball,{x, y: y-4});
     }
     if(event.keyCode === 83){
-        Body.setVelocity(ball,{x, y: y+2});
+        Body.setVelocity(ball,{x, y: y+4});
     }
     if(event.keyCode === 65){
-        Body.setVelocity(ball,{x:x-2, y});
+        Body.setVelocity(ball,{x:x-4, y});
     }
     if(event.keyCode === 68){
-        Body.setVelocity(ball,{x:x+2, y});
-        console.log("działa")
+        Body.setVelocity(ball,{x:x+4, y});
+        
     }
 })
+//winning detection
+Events.on(engine, 'collisionStart',event =>{
+    event.pairs.forEach(collision => {
+        const labels = ['win', 'ball']
+        if(labels.includes(collision.bodyA.label)  && labels.includes(collision.bodyB.label )){
+            engine.world.gravity.y= 1;
+            world.bodies.forEach(body => {
+                if (body.label === 'wall' || body.label === 'win'){
+                    Body.setStatic(body,false);
+                    
+                }
+            });
+        }
+    });
+});
