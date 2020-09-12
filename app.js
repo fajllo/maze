@@ -1,8 +1,8 @@
 const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse,Body, Events} = Matter;
 const width = window.innerWidth;
 const height = window.innerHeight-5;
-const columns= 10;
-const rows = 10;
+const columns= 15;
+const rows = 15;
 const widthLenght = width/rows;
 const heightLenght = height/columns;
 
@@ -121,7 +121,7 @@ horizontals.forEach((row,rowIndex)=> {
                 label : "wall",
                 isStatic:true,
                 render : {
-                    fillStyle : "#2a9d8f"
+                    fillStyle : "#e9c46a"
                 }
             }
         );
@@ -169,8 +169,8 @@ World.add(world,win)
 const ball = Bodies.polygon(
     heightLenght*0.5,
     heightLenght*0.5,
-    heightLenght*0.26,
-    heightLenght*0.26,
+    heightLenght*0.1,
+    heightLenght*0.1,
     {
         label: 'ball',
         render: { fillStyle:"" }
@@ -203,6 +203,11 @@ Events.on(engine, 'collisionStart',event =>{
                 if (body.label === 'wall' || body.label === 'win'){
                     Body.setStatic(body,false);
                     document.querySelector(".winner").classList.remove("hidden");
+                    document.querySelector("button").addEventListener("click",()=>{
+                        console.log("działa")
+
+                        mazeCreation(startRow,startRow);
+                    });
                     
                 }
             });
