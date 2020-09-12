@@ -1,9 +1,10 @@
 const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse,Body, Events} = Matter;
-const width = 600;
-const height = 600;
-const columns= 5;
-const rows = 5;
-const lenght = height/rows;
+const width = window.innerWidth;
+const height = window.innerHeight-5;
+const columns= 10;
+const rows = 10;
+const widthLenght = width/rows;
+const heightLenght = height/columns;
 
 
 const engine = Engine.create();
@@ -112,13 +113,16 @@ horizontals.forEach((row,rowIndex)=> {
         }
         // drowing walls in our maze
         const walls = Bodies.rectangle(
-            lenght * (columIndex + 0.5),
-            lenght * (rowIndex + 1),
-            lenght,
+            widthLenght * (columIndex + 0.5),
+            heightLenght * (rowIndex + 1),
+            widthLenght,
             4,
             {
                 label : "wall",
                 isStatic:true,
+                render : {
+                    fillStyle : "#2a9d8f"
+                }
             }
         );
         World.add(world,walls)
@@ -131,13 +135,16 @@ verticals.forEach((row,rowIndex)=> {
             return
         }
         const walls = Bodies.rectangle(
-            lenght* (columIndex +1),
-            lenght *(rowIndex +0.5),
+            widthLenght* (columIndex +1),
+            heightLenght *(rowIndex +0.5),
             4,
-            lenght,
+            heightLenght,
             {
                 label : "wall",
                 isStatic: true,
+                render : {
+                    fillStyle : "#e9c46a"
+                }
             }
         );
         World.add(world,walls)
@@ -145,10 +152,10 @@ verticals.forEach((row,rowIndex)=> {
     });
 });
 const win = Bodies.rectangle(
-    lenght * ((columns-1)+0.5),
-    lenght * ((rows-1)+0.5),
-    lenght * 0.6,
-    lenght * 0.6,
+    widthLenght * ((columns-1)+0.5),
+    heightLenght * ((rows-1)+0.5),
+    widthLenght * 0.6,
+    heightLenght * 0.6,
     {
         label : "win",
         render:{
@@ -160,10 +167,10 @@ const win = Bodies.rectangle(
 World.add(world,win)
 
 const ball = Bodies.polygon(
-    lenght*0.5,
-    lenght*0.5,
-    lenght*0.26,
-    lenght*0.26,
+    heightLenght*0.5,
+    heightLenght*0.5,
+    heightLenght*0.26,
+    heightLenght*0.26,
     {
         label: 'ball',
         render: { fillStyle:"" }
@@ -195,6 +202,7 @@ Events.on(engine, 'collisionStart',event =>{
             world.bodies.forEach(body => {
                 if (body.label === 'wall' || body.label === 'win'){
                     Body.setStatic(body,false);
+                    document.querySelector(".winner").classList.remove("hidden");
                     
                 }
             });
