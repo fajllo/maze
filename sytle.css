@@ -28,3 +28,14 @@ h1 {
         opacity: 1;
     }
 }
+button{
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    height: 10vh;
+    width: 10vw;
+    background-color: transparent;
+
+}
