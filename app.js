@@ -163,18 +163,19 @@ const ball = Bodies.circle(
     lenght*0.26,
 )
 World.add(world,ball)
-document.addEventListener('keydown',event =>{
+document.addEventListener('keyup',event =>{
     const {x, y}= ball.velocity;
     if(event.keyCode === 87){
-        Body.setVelocity(ball,{x, y: y-4});
+        Body.setVelocity(ball,{x, y: y-2});
     }
     if(event.keyCode === 83){
-        Body.setVelocity(ball,{x, y: y+4});
+        Body.setVelocity(ball,{x, y: y+2});
     }
     if(event.keyCode === 65){
-        Body.setVelocity(ball,{x:x-4, y});
+        Body.setVelocity(ball,{x:x-2, y});
     }
     if(event.keyCode === 68){
-        Body.setVelocity(ball,{x:x+4, y});
+        Body.setVelocity(ball,{x:x+2, y});
+        console.log("działa")
     }
 })
