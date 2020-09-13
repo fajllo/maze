@@ -210,11 +210,12 @@ function start(){
                         engine.world.gravity.y= 1;
                         setTimeout(() =>{
                             document.querySelector(".winner").classList.add("hidden");
-                        },2000)
+                            document.querySelector("button").classList.remove("hidden");
+                        },3600)
                         setTimeout(()=>{
                             World.remove(world,world.bodies)
                         },3500);
-                        document.querySelector("button").classList.remove("hidden")
+                        
 
 
   
