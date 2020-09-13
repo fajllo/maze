@@ -183,16 +183,16 @@ function start(){
     World.add(world,ball)
     document.addEventListener('keydown',event =>{
         const {x, y}= ball.velocity;
-        if(event.keyCode === 87){
+        if(event.keyCode === 87 || event.keyCode === 38){
             Body.setVelocity(ball,{x, y: y-4});
         }
-        if(event.keyCode === 83){
+        if(event.keyCode === 83 || event.keyCode === 40){
             Body.setVelocity(ball,{x, y: y+4});
         }
-        if(event.keyCode === 65){
+        if(event.keyCode === 65 || event.keyCode === 37){
             Body.setVelocity(ball,{x:x-4, y});
         }
-        if(event.keyCode === 68){
+        if(event.keyCode === 68 || event.keyCode === 39){
             Body.setVelocity(ball,{x:x+4, y});
             
         }
