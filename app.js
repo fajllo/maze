@@ -1,7 +1,7 @@
 const {Engine, Render, Runner, World, Bodies, MouseConstraint,Mouse,Body, Events} = Matter;
 const width = window.innerWidth;
 const height = window.innerHeight-5;
-let size = 15;
+let size = 20;
 let columns= size;
 let rows = size;
 const widthLenght = width/rows;
